@@ -47,11 +47,12 @@
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button_Listaba = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.listBox_Tetelek = new System.Windows.Forms.ListBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button_Listaba = new System.Windows.Forms.Button();
+            this.button_Torol_listabol = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_Mennyiseg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_Pizza)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_Vevo)).BeginInit();
@@ -107,10 +108,13 @@
             // 
             // textBox_Fizetendo
             // 
+            this.textBox_Fizetendo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBox_Fizetendo.Location = new System.Drawing.Point(428, 314);
             this.textBox_Fizetendo.Name = "textBox_Fizetendo";
+            this.textBox_Fizetendo.ReadOnly = true;
             this.textBox_Fizetendo.Size = new System.Drawing.Size(120, 20);
             this.textBox_Fizetendo.TabIndex = 6;
+            this.textBox_Fizetendo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // comboBox_Futar_neve
             // 
@@ -119,6 +123,7 @@
             this.comboBox_Futar_neve.Name = "comboBox_Futar_neve";
             this.comboBox_Futar_neve.Size = new System.Drawing.Size(145, 21);
             this.comboBox_Futar_neve.TabIndex = 7;
+            this.comboBox_Futar_neve.SelectedIndexChanged += new System.EventHandler(this.comboBox_Futar_neve_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -136,6 +141,7 @@
             this.comboBox_Pizza.Name = "comboBox_Pizza";
             this.comboBox_Pizza.Size = new System.Drawing.Size(152, 21);
             this.comboBox_Pizza.TabIndex = 9;
+            this.comboBox_Pizza.SelectedIndexChanged += new System.EventHandler(this.comboBox_Pizza_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -158,7 +164,7 @@
             // picture_Vevo
             // 
             this.picture_Vevo.Image = global::PizzaShopApp.Properties.Resources.Vevo_Vidor;
-            this.picture_Vevo.Location = new System.Drawing.Point(82, 47);
+            this.picture_Vevo.Location = new System.Drawing.Point(43, 72);
             this.picture_Vevo.Name = "picture_Vevo";
             this.picture_Vevo.Size = new System.Drawing.Size(125, 164);
             this.picture_Vevo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -178,6 +184,7 @@
             // 
             this.textBox_Futar_telefonszama.Location = new System.Drawing.Point(104, 62);
             this.textBox_Futar_telefonszama.Name = "textBox_Futar_telefonszama";
+            this.textBox_Futar_telefonszama.ReadOnly = true;
             this.textBox_Futar_telefonszama.Size = new System.Drawing.Size(145, 20);
             this.textBox_Futar_telefonszama.TabIndex = 13;
             // 
@@ -213,6 +220,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button_Torol_listabol);
             this.groupBox2.Controls.Add(this.button_Listaba);
             this.groupBox2.Controls.Add(this.picture_Pizza);
             this.groupBox2.Controls.Add(this.numeric_Mennyiseg);
@@ -226,6 +234,18 @@
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pizza";
+            // 
+            // button_Listaba
+            // 
+            this.button_Listaba.BackColor = System.Drawing.Color.LightGreen;
+            this.button_Listaba.ForeColor = System.Drawing.Color.DarkGreen;
+            this.button_Listaba.Location = new System.Drawing.Point(121, 83);
+            this.button_Listaba.Name = "button_Listaba";
+            this.button_Listaba.Size = new System.Drawing.Size(127, 23);
+            this.button_Listaba.TabIndex = 12;
+            this.button_Listaba.Text = "Listába ír / Módosít";
+            this.button_Listaba.UseVisualStyleBackColor = false;
+            this.button_Listaba.Click += new System.EventHandler(this.button_Listaba_Click);
             // 
             // groupBox3
             // 
@@ -269,15 +289,19 @@
             this.button1.TabIndex = 20;
             this.button1.Text = "Rendelés rögzítés";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button_Listaba
+            // button_Torol_listabol
             // 
-            this.button_Listaba.Location = new System.Drawing.Point(115, 82);
-            this.button_Listaba.Name = "button_Listaba";
-            this.button_Listaba.Size = new System.Drawing.Size(75, 23);
-            this.button_Listaba.TabIndex = 12;
-            this.button_Listaba.Text = "Listába";
-            this.button_Listaba.UseVisualStyleBackColor = true;
+            this.button_Torol_listabol.BackColor = System.Drawing.Color.LightCoral;
+            this.button_Torol_listabol.ForeColor = System.Drawing.Color.DarkRed;
+            this.button_Torol_listabol.Location = new System.Drawing.Point(31, 83);
+            this.button_Torol_listabol.Margin = new System.Windows.Forms.Padding(0);
+            this.button_Torol_listabol.Name = "button_Torol_listabol";
+            this.button_Torol_listabol.Size = new System.Drawing.Size(75, 23);
+            this.button_Torol_listabol.TabIndex = 13;
+            this.button_Torol_listabol.Text = "Töröl";
+            this.button_Torol_listabol.UseVisualStyleBackColor = false;
             // 
             // Form_Rendeles
             // 
@@ -337,5 +361,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button_Listaba;
+        private System.Windows.Forms.Button button_Torol_listabol;
     }
 }

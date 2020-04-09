@@ -22,5 +22,10 @@ namespace PizzaShopApp
         public int Id { get => id; set => id = value; }
         public string Nev { get => nev; set => nev = value; }
         public string Telefon { get => telefon; set => telefon = value; }
+
+        public override string ToString()
+        {
+            return nev;
+        }
     }
 }

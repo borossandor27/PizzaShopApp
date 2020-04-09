@@ -83,6 +83,7 @@
     <Compile Include="Futar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Pizza.cs" />
     <Compile Include="Rendeles_tetel.cs" />
     <Compile Include="Vevo.cs" />
     <EmbeddedResource Include="Form_Navigal.resx">
