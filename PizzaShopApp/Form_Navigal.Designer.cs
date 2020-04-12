@@ -61,6 +61,7 @@
             this.button_Vevo.TabIndex = 0;
             this.button_Vevo.Text = "Vevő";
             this.button_Vevo.UseVisualStyleBackColor = true;
+            this.button_Vevo.Click += new System.EventHandler(this.button_Vevo_Click);
             // 
             // Form_Navigal
             // 

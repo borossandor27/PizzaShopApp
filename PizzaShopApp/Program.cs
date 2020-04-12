@@ -12,6 +12,7 @@ namespace PizzaShopApp
     {
         public static Form form_navigal = null;
         public static Form form_rendeles = null;
+        public static Form form_vevo = null;
         public static MySqlConnection conn = null;
         public static MySqlCommand sql = null;
         public static List<Vevo> vevok = null;
@@ -38,6 +39,7 @@ namespace PizzaShopApp
             Application.SetCompatibleTextRenderingDefault(false);
             form_navigal = new Form_Navigal();
             form_rendeles = new Form_Rendeles();
+            form_vevo = new Form_Vevo();
             Application.Run(form_navigal);
         }
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2020. Ápr 01. 11:16
+-- Létrehozás ideje: 2020. Ápr 12. 20:21
 -- Kiszolgáló verziója: 10.1.36-MariaDB
 -- PHP verzió: 7.2.11
 
@@ -30,18 +30,19 @@ USE `pizzashop`;
 -- A nézet helyettes szerkezete `minden`
 -- (Lásd alább az aktuális nézetet)
 --
-CREATE TABLE IF NOT EXISTS `minden` (
-`razon` int(2)
-,`vazon` int(1)
-,`fazon` int(1)
-,`datum` varchar(19)
-,`fnev` varchar(12)
-,`ftel` varchar(13)
-,`vnev` varchar(6)
-,`vcim` varchar(36)
-,`pazon` int(1)
-,`db` int(1)
-,`par` int(4)
+DROP VIEW IF EXISTS `minden`;
+CREATE TABLE `minden` (
+`razon` int(11)
+,`vazon` int(11)
+,`fazon` int(11)
+,`datum` datetime
+,`fnev` varchar(120)
+,`ftel` varchar(30)
+,`vnev` varchar(60)
+,`vcim` varchar(160)
+,`pazon` int(11)
+,`db` int(11)
+,`par` int(11)
 ,`ertek` bigint(21)
 );
 
@@ -51,12 +52,12 @@ CREATE TABLE IF NOT EXISTS `minden` (
 -- Tábla szerkezet ehhez a táblához `pfutar`
 --
 
-CREATE TABLE IF NOT EXISTS `pfutar` (
-  `fazon` int(1) NOT NULL AUTO_INCREMENT,
-  `fnev` varchar(12) DEFAULT NULL,
-  `ftel` varchar(13) DEFAULT NULL,
-  PRIMARY KEY (`fazon`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `pfutar`;
+CREATE TABLE `pfutar` (
+  `fazon` int(11) NOT NULL,
+  `fnev` varchar(120) DEFAULT NULL,
+  `ftel` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- A tábla adatainak kiíratása `pfutar`
@@ -75,12 +76,12 @@ INSERT INTO `pfutar` (`fazon`, `fnev`, `ftel`) VALUES
 -- Tábla szerkezet ehhez a táblához `ppizza`
 --
 
-CREATE TABLE IF NOT EXISTS `ppizza` (
-  `pazon` int(1) NOT NULL AUTO_INCREMENT,
-  `pnev` varchar(14) DEFAULT NULL,
-  `par` int(4) DEFAULT NULL,
-  PRIMARY KEY (`pazon`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `ppizza`;
+CREATE TABLE `ppizza` (
+  `pazon` int(11) NOT NULL,
+  `pnev` varchar(140) DEFAULT NULL,
+  `par` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- A tábla adatainak kiíratása `ppizza`
@@ -99,15 +100,13 @@ INSERT INTO `ppizza` (`pazon`, `pnev`, `par`) VALUES
 -- Tábla szerkezet ehhez a táblához `prendeles`
 --
 
-CREATE TABLE IF NOT EXISTS `prendeles` (
-  `razon` int(2) NOT NULL AUTO_INCREMENT,
-  `vazon` int(1) DEFAULT NULL,
-  `fazon` int(1) DEFAULT NULL,
-  `datum` varchar(19) DEFAULT NULL,
-  PRIMARY KEY (`razon`),
-  KEY `fk5` (`vazon`),
-  KEY `fk6` (`fazon`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `prendeles`;
+CREATE TABLE `prendeles` (
+  `razon` int(11) NOT NULL,
+  `vazon` int(11) DEFAULT NULL,
+  `fazon` int(11) DEFAULT NULL,
+  `datum` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- A tábla adatainak kiíratása `prendeles`
@@ -134,7 +133,9 @@ INSERT INTO `prendeles` (`razon`, `vazon`, `fazon`, `datum`) VALUES
 (18, 3, 2, '2020-03-22 04:37:56'),
 (19, 4, 5, '2020-03-22 05:48:59'),
 (20, 1, 1, '2020-03-23 07:08:27'),
-(21, 5, 3, '2020-03-23 15:40:05');
+(21, 5, 3, '2020-03-23 15:40:05'),
+(22, 1, 2, '2020-01-22 00:00:00'),
+(23, 4, 2, '2020-04-09 16:11:46');
 
 -- --------------------------------------------------------
 
@@ -142,12 +143,11 @@ INSERT INTO `prendeles` (`razon`, `vazon`, `fazon`, `datum`) VALUES
 -- Tábla szerkezet ehhez a táblához `ptetel`
 --
 
-CREATE TABLE IF NOT EXISTS `ptetel` (
-  `razon` int(2) DEFAULT NULL,
-  `pazon` int(1) DEFAULT NULL,
-  `db` int(1) DEFAULT NULL,
-  KEY `fk3` (`razon`),
-  KEY `fk4` (`pazon`)
+DROP TABLE IF EXISTS `ptetel`;
+CREATE TABLE `ptetel` (
+  `razon` int(11) DEFAULT NULL,
+  `pazon` int(11) DEFAULT NULL,
+  `db` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -191,7 +191,10 @@ INSERT INTO `ptetel` (`razon`, `pazon`, `db`) VALUES
 (19, 5, 1),
 (20, 5, 3),
 (21, 2, 2),
-(21, 4, 1);
+(21, 4, 1),
+(22, 1, 3),
+(23, 3, 1),
+(23, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -199,12 +202,12 @@ INSERT INTO `ptetel` (`razon`, `pazon`, `db`) VALUES
 -- Tábla szerkezet ehhez a táblához `pvevo`
 --
 
-CREATE TABLE IF NOT EXISTS `pvevo` (
-  `vazon` int(1) NOT NULL AUTO_INCREMENT,
-  `vnev` varchar(6) DEFAULT NULL,
-  `vcim` varchar(36) DEFAULT NULL,
-  PRIMARY KEY (`vazon`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `pvevo`;
+CREATE TABLE `pvevo` (
+  `vazon` int(11) NOT NULL,
+  `vnev` varchar(60) DEFAULT NULL,
+  `vcim` varchar(160) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- A tábla adatainak kiíratása `pvevo`
@@ -225,11 +228,12 @@ INSERT INTO `pvevo` (`vazon`, `vnev`, `vcim`) VALUES
 -- A nézet helyettes szerkezete `rendeles_nezet`
 -- (Lásd alább az aktuális nézetet)
 --
-CREATE TABLE IF NOT EXISTS `rendeles_nezet` (
-`razon` int(2)
-,`pazon` int(1)
-,`db` int(1)
-,`par` int(4)
+DROP VIEW IF EXISTS `rendeles_nezet`;
+CREATE TABLE `rendeles_nezet` (
+`razon` int(11)
+,`pazon` int(11)
+,`db` int(11)
+,`par` int(11)
 ,`ertek` bigint(21)
 );
 
@@ -250,6 +254,71 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `rendeles_nezet`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `rendeles_nezet`  AS  select `ptetel`.`razon` AS `razon`,`ptetel`.`pazon` AS `pazon`,`ptetel`.`db` AS `db`,`ppizza`.`par` AS `par`,(`ppizza`.`par` * `ptetel`.`db`) AS `ertek` from (`ptetel` join `ppizza` on((`ptetel`.`pazon` = `ppizza`.`pazon`))) order by `ptetel`.`razon` ;
+
+--
+-- Indexek a kiírt táblákhoz
+--
+
+--
+-- A tábla indexei `pfutar`
+--
+ALTER TABLE `pfutar`
+  ADD PRIMARY KEY (`fazon`);
+
+--
+-- A tábla indexei `ppizza`
+--
+ALTER TABLE `ppizza`
+  ADD PRIMARY KEY (`pazon`);
+
+--
+-- A tábla indexei `prendeles`
+--
+ALTER TABLE `prendeles`
+  ADD PRIMARY KEY (`razon`),
+  ADD KEY `fk5` (`vazon`),
+  ADD KEY `fk6` (`fazon`);
+
+--
+-- A tábla indexei `ptetel`
+--
+ALTER TABLE `ptetel`
+  ADD KEY `fk3` (`razon`),
+  ADD KEY `fk4` (`pazon`);
+
+--
+-- A tábla indexei `pvevo`
+--
+ALTER TABLE `pvevo`
+  ADD PRIMARY KEY (`vazon`);
+
+--
+-- A kiírt táblák AUTO_INCREMENT értéke
+--
+
+--
+-- AUTO_INCREMENT a táblához `pfutar`
+--
+ALTER TABLE `pfutar`
+  MODIFY `fazon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT a táblához `ppizza`
+--
+ALTER TABLE `ppizza`
+  MODIFY `pazon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT a táblához `prendeles`
+--
+ALTER TABLE `prendeles`
+  MODIFY `razon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT a táblához `pvevo`
+--
+ALTER TABLE `pvevo`
+  MODIFY `vazon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Megkötések a kiírt táblákhoz

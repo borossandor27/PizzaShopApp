@@ -80,6 +80,12 @@
     <Compile Include="Form_Rendeles.Designer.cs">
       <DependentUpon>Form_Rendeles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Vevo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Vevo.Designer.cs">
+      <DependentUpon>Form_Vevo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Futar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Rendeles.resx">
       <DependentUpon>Form_Rendeles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Vevo.resx">
+      <DependentUpon>Form_Vevo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

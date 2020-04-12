@@ -21,7 +21,13 @@ namespace PizzaShopApp
         private void button_Rendelés_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Program.form_rendeles.Show();
+            Program.form_rendeles.ShowDialog();
+        }
+
+        private void button_Vevo_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Program.form_vevo.ShowDialog();
         }
     }
 }
