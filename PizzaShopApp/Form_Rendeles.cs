@@ -164,7 +164,7 @@ namespace PizzaShopApp
             Futar futar = (Futar)comboBox_Futar_neve.SelectedItem;
             Vevo vevo = (Vevo)comboBox_Vevo.SelectedItem;
             // A adatbázis konzisztenciájának megőrzése miatt használjuk a tranzakció követést!
-            MySqlTransaction myTrans = Program.conn.BeginTransaction();
+            MySqlTransaction SajatTrans = Program.conn.BeginTransaction();
             try
             {
                 Program.sql.CommandText = "INSERT INTO `prendeles` (`razon`, `vazon`, `fazon`, `datum`) VALUES (NULL, @vazon, @fazon, @datum); ";
@@ -185,7 +185,7 @@ namespace PizzaShopApp
                     Program.sql.ExecuteNonQuery();
                 }
 
-                myTrans.Commit(); //-- az adatbázisműveletek rögzítése
+                SajatTrans.Commit(); //-- Az adatbázisműveletek rögzítése
                 MessageBox.Show("Az adatok rögzítése sikeres!");
                 listBox_Tetelek.Items.Clear();
                 Futarokat_Betolt();
@@ -194,8 +194,7 @@ namespace PizzaShopApp
             }
             catch (MySqlException ex)
             {
-
-                myTrans.Rollback();
+                SajatTrans.Rollback(); //-- A megkezdett műveletek elvetése
                 MessageBox.Show(ex.Message + "\n\nAz adatok rögzítése sikertelen!");
                 return;
             }

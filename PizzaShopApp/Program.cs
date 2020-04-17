@@ -13,10 +13,12 @@ namespace PizzaShopApp
         public static Form form_navigal = null;
         public static Form form_rendeles = null;
         public static Form form_vevo = null;
+        public static Form form_futar = null;
         public static MySqlConnection conn = null;
         public static MySqlCommand sql = null;
-        public static List<Vevo> vevok = null;
-        public static List<Rendeles_tetel> tetelek = null;
+        public static List<Vevo> vevok = new List<Vevo>();
+        public static List<Futar> futarok = new List<Futar>();
+        public static List<Rendeles_tetel> tetelek = new List<Rendeles_tetel>();
         static void Main()
         {
             MySqlConnectionStringBuilder sb = new MySqlConnectionStringBuilder();
@@ -40,6 +42,7 @@ namespace PizzaShopApp
             form_navigal = new Form_Navigal();
             form_rendeles = new Form_Rendeles();
             form_vevo = new Form_Vevo();
+            form_futar = new Form_Futar();
             Application.Run(form_navigal);
         }
     }

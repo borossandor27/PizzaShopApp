@@ -29,5 +29,11 @@ namespace PizzaShopApp
             this.Hide();
             Program.form_vevo.ShowDialog();
         }
+
+        private void button_Futar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Program.form_futar.Show();
+        }
     }
 }

@@ -98,9 +98,7 @@ namespace PizzaShopApp
         {
             this.Hide(); 
             Program.form_navigal.Show();
- 
             e.Cancel = true;
-
         }
 
         /// <summary>

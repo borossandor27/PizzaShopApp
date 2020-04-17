@@ -52,6 +52,7 @@
             this.button_Futar.TabIndex = 0;
             this.button_Futar.Text = "Futár";
             this.button_Futar.UseVisualStyleBackColor = true;
+            this.button_Futar.Click += new System.EventHandler(this.button_Futar_Click);
             // 
             // button_Vevo
             // 
